@@ -48,4 +48,10 @@ public class UserDao {
             return false;
         }
     }
+
+    public java.util.List<User> getAllUsers() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from User", User.class).list();
+        }
+    }
 }

@@ -8,6 +8,7 @@ import com.studentmgt.model.Gender;
 import com.studentmgt.model.Role;
 import com.studentmgt.model.User;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -20,7 +21,9 @@ public class Main {
             System.out.println("\nLibrary Management System");
             System.out.println("1. Add User");
             System.out.println("2. Add Book");
-            System.out.println("3. Exit");
+            System.out.println("3. View All Users");
+            System.out.println("4. View All Books");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -34,6 +37,12 @@ public class Main {
                     addBook();
                     break;
                 case 3:
+                    viewAllUsers();
+                    break;
+                case 4:
+                    viewAllBooks();
+                    break;
+                case 5:
                     System.out.println("Exiting...");
                     return;
                 default:
@@ -50,7 +59,7 @@ public class Main {
         System.out.print("Enter last name: ");
         String lastName = scanner.nextLine();
         System.out.print("Enter gender (MALE/FEMALE): ");
-        Gender gender = Gender.valueOf(scanner.nextLine().toUpperCase());
+        Gender gender = Gender.valueOf(scanner.nextLine().trim().toUpperCase());
         System.out.print("Enter phone number: ");
         String phoneNumber = scanner.nextLine();
         System.out.print("Enter username: ");
@@ -58,7 +67,7 @@ public class Main {
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
         System.out.print("Enter role (STUDENT, MANAGER, TEACHER, DEAN, HOD, LIBRARIAN): ");
-        Role role = Role.valueOf(scanner.nextLine().toUpperCase());
+        Role role = Role.valueOf(scanner.nextLine().trim().toUpperCase());
 
         User user = new User();
         user.setPersonId(personId);
@@ -94,5 +103,19 @@ public class Main {
 
         bookDao.saveBook(book);
         System.out.println("Book added successfully!");
+    }
+
+    private static void viewAllUsers() {
+        List<User> users = userDao.getAllUsers();
+        for (User user : users) {
+            System.out.println("ID: " + user.getPersonId() + ", Name: " + user.getFirstName() + " " + user.getLastName() + ", Username: " + user.getUserName());
+        }
+    }
+
+    private static void viewAllBooks() {
+        List<Book> books = bookDao.getAllBooks();
+        for (Book book : books) {
+            System.out.println("ID: " + book.getBookId() + ", Title: " + book.getTitle() + ", ISBN: " + book.getIsbn() + ", Status: " + book.getBookStatus());
+        }
     }
 }
