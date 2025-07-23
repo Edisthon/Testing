@@ -1,0 +1,8 @@
+/app/src/main/java/com/studentmgt/model/Enrollment.java
+/app/src/main/java/com/studentmgt/dao/EnrollmentDao.java
+/app/src/main/java/com/studentmgt/model/Student.java
+/app/src/main/java/com/studentmgt/util/HibernateUtil.java
+/app/src/main/java/com/studentmgt/Main.java
+/app/src/main/java/com/studentmgt/model/Course.java
+/app/src/main/java/com/studentmgt/dao/CourseDao.java
+/app/src/main/java/com/studentmgt/dao/StudentDao.java
