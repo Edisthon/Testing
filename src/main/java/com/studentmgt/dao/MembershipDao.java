@@ -1,6 +1,7 @@
 package com.studentmgt.dao;
 
 import com.studentmgt.model.Membership;
+import com.studentmgt.model.User;
 import com.studentmgt.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,6 +18,18 @@ public class MembershipDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+        }
+    }
+
+    public boolean canBorrow(User user) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Membership membership = session.createQuery("from Membership where reader = :user", Membership.class)
+                    .setParameter("user", user)
+                    .uniqueResult();
+            if (membership != null) {
+                return membership.getBorrowedBooks() < membership.getMembershipType().getMaxBooks();
+            }
+            return false;
         }
     }
 }
