@@ -1,0 +1,8 @@
+com/studentmgt/model/Student.class
+com/studentmgt/util/HibernateUtil.class
+com/studentmgt/model/Course.class
+com/studentmgt/dao/StudentDao.class
+com/studentmgt/Main.class
+com/studentmgt/model/Enrollment.class
+com/studentmgt/dao/CourseDao.class
+com/studentmgt/dao/EnrollmentDao.class
