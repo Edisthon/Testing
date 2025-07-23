@@ -35,4 +35,10 @@ public class BookDao {
             e.printStackTrace();
         }
     }
+
+    public java.util.List<Book> getAllBooks() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.createQuery("from Book", Book.class).list();
+        }
+    }
 }
